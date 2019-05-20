@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h3 v-for="(item, index) in items.results" :key="index">{{ item.name }}</h3>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'home',
-  components: {
-    HelloWorld
+  computed: {
+    ...mapGetters({
+      somethingCount: 'FETCH_CHARACTERS'
+    }),
+    items() {
+      return this.somethingCount.data
+    }
+  },
+  mounted() {
+    this.getCharacters()
+  },
+  methods: {
+    getCharacters() {
+      this.$store.dispatch(
+        'FETCH_CHARACTERS'
+      )
+    }
   }
 }
 </script>
