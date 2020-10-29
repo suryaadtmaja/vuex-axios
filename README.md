@@ -1,5 +1,10 @@
 # vuex-axios
 
+
+Vue Js example fetching API with Vuex and Axios, using marvel api.
+
+[demo](https://vue-marvel.herokuapp.com/)
+
 ## Project setup
 ```
 npm install
